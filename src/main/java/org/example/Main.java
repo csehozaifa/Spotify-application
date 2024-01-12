@@ -4,8 +4,7 @@ package org.example;
 import Listenify.Album;
 import Listenify.Song;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,5 +30,77 @@ public class Main {
         a2.addToPlayList(playlist,"Apna Bana Le");
         a2.addToPlayList(playlist,"Uska Hi Bana");
         a2.addToPlayList(playlist,"Channa Mereya");
+
+        int currIndex=0;
+        printMenu();
+        System.out.println("Now playlist"+playlist.get(currIndex).toString());
+        playPlayList(playlist);
+    }
+
+    public static void playPlayList(List<Song> playlist){
+        Scanner sc=new Scanner(System.in);
+        int currInd=0;
+
+        boolean quit=false;
+
+        while(quit==false){
+            int choice=sc.nextInt();
+            switch(choice){
+                case 1:
+                    currInd=currInd+1;
+                    if(currInd%playlist.size()==0)
+                        currInd=0;
+                        System.out.println("Now playing"+playlist.get(currInd).toString());
+
+                    break;
+                case 2:
+                    currInd=currInd-1;
+                    if(currInd==-1)
+                        currInd=0;
+                    System.out.println("Now playing"+playlist.get(currInd).toString());
+                    break;
+                case 3:
+                    System.out.println("Now playing"+playlist.get(currInd).toString());
+                    break;
+                case 4:
+                    Collections.shuffle(playlist);
+                    break;
+                case 5:
+                    printMenu();
+                    break;
+                case 6:
+                    printPlayList(playlist);
+                    break;
+                case 7:
+                    playlist.remove(currInd);
+                    System.out.println("The current song has been deleted");
+                    break;
+                case 8:
+                    quit=true;
+                    break;
+
+
+
+            }
+        }
+
+    }
+    public static void printPlayList(List<Song> playlist){
+        for(Song song:playlist){
+
+
+        }
+    }
+    public static void printMenu(){
+        System.out.println("1.play the next song");
+        System.out.println("2.play the previous song");
+        System.out.println("3.repeat this song");
+        System.out.println("4.shuffle the playlist");
+        System.out.println("5.print the menu !!");
+        System.out.println("6.print playlist");
+        System.out.println("7.delete the current song");
+        System.out.println("8.Exit the system");
+        System.out.println("<<<-------->>>");
+        System.out.println("enter your choice");
     }
 }
